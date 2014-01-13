@@ -1,0 +1,20 @@
+*.class
+.settings
+.project
+.classpath
+precompiled
+tmp
+eclipse/classes
+bin
+.DS_Store
+
+# Intellij project files
+*.iml
+*.ipr
+*.iws
+*.ids
+.idea/
+build
+out
+
+.gradle/1.10
