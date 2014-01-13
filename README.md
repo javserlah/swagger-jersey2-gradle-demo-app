@@ -16,6 +16,7 @@ https://github.com/Zenedith/gradlew
 $ ./gradlew init
 ```
 dependencies: update dependencies versions
+
 dependencies: compile group: 'javax.servlet', name: 'javax.servlet-api', version: javaxServletApiVersion
 
 ### test
@@ -25,7 +26,7 @@ $ ./gradlew test
 ```
 
 ### war
-build.gradle: apply plugin: ‚java’ -> apply plugin: 'war'
+build.gradle: apply plugin: 'java' -> apply plugin: 'war'
 
 ```
 $ ls build/libs/
@@ -33,6 +34,7 @@ $ ls build/libs/
 
 ### jetty runner
 http://search.maven.org : search jetty-runner
+
 http://search.maven.org/remotecontent?filepath=org/eclipse/jetty/jetty-runner/9.1.1.v20140108/jetty-runner-9.1.1.v20140108.jar
 
 ### run on localhost:8080
@@ -41,7 +43,9 @@ $ java -jar jetty-runner-9.1.1.v20140108.jar build/libs/*.war
 ```
 
 http://localhost:8080/api-docs
+
 http://localhost:8080/api-docs/store
+
 http://localhost:8080/api-docs/user
 
 web.xml: "basePath”: "http://localhost:8002/api” -> http://localhost:8080
@@ -49,6 +53,7 @@ web.xml: "basePath”: "http://localhost:8002/api” -> http://localhost:8080
 UserData: user1, user2, ..
 
 browser: GET http://localhost:8080/user/user1 (xml output)
+
 browser: http://swagger.wordnik.com
 
 ```
@@ -59,6 +64,8 @@ curl http://localhost:8080/user/user1 -i -H "Accept: application/xml” (xml out
 ```
 
 ### GIT
+.gitignore:
+
 ```
 $ .gitignore:
 *.class
@@ -80,6 +87,9 @@ build
 out
 .gradle/1.10
 ```
+
+Update repo:
+
 ```
 $ git add .gitignore
 $ git add —all
