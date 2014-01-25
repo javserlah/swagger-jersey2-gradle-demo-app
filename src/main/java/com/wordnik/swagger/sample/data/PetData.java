@@ -67,7 +67,7 @@ public class PetData {
 
   public List<Pet> findPetByStatus(String status) {
     String[] statues = status.split(",");
-    List<Pet> result = new java.util.ArrayList<Pet>();
+    List<Pet> result = new ArrayList<Pet>();
     for (Pet pet : pets) {
       for (String s : statues) {
         if (s.equals(pet.getStatus())) {
@@ -80,7 +80,7 @@ public class PetData {
 
   public List<Pet> findPetByTags(String tags) {
     String[] tagList = tags.split(",");
-    List<Pet> result = new java.util.ArrayList<Pet>();
+    List<Pet> result = new ArrayList<Pet>();
     for (Pet pet : pets) {
       if (null != pet.getTags()) {
         for (Tag tag : pet.getTags()) {
@@ -118,7 +118,7 @@ public class PetData {
       }
       pet.setPhotoUrls(urlObjs);
     }
-    List<Tag> tagObjs = new java.util.ArrayList<Tag>();
+    List<Tag> tagObjs = new ArrayList<Tag>();
     int i = 0;
     if (null != tags) {
       for (String tagString : tags) {
