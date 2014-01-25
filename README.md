@@ -3,30 +3,45 @@
 
 ### swagger + jersey
 https://github.com/wordnik/swagger-core/tree/master/samples/java-jersey2
-git@github.com:wordnik/swagger-core.git
+
+```
+git clone git@github.com:wordnik/swagger-core.git
+```
+
 ```
 $ cd swagger-core/samples/java-jersey2
 ```
 
-### gradle
-https://github.com/Zenedith/gradlew
+### gradle (wrapper)
 
-### convert to gradle
+```
+git clone https://github.com/Zenedith/gradlew
+```
+
+### convert swagger project to gradle
+
 ```
 $ ./gradlew init
 ```
-dependencies: update dependencies versions
+#### edit dependencies
+**dependencies**: update dependencies versions
 
-dependencies: compile group: 'javax.servlet', name: 'javax.servlet-api', version: javaxServletApiVersion
+**dependencies**: compile group: 'javax.servlet', name: 'javax.servlet-api', version: javaxServletApiVersion
+
+**settings.gradle**:  rootProject.name = 'swagger-jersey2-gradle-demo-app'
 
 ### test
-settings.gradle:  rootProject.name = 'swagger-jersey2-gradle-demo-app'
+
 ```
 $ ./gradlew test
 ```
 
 ### war
-build.gradle: apply plugin: 'java' -> apply plugin: 'war'
+**build.gradle**: apply plugin: 'java' -> apply plugin: 'war'
+
+```
+$ ./gradlew war
+```
 
 ```
 $ ls build/libs/
@@ -35,26 +50,31 @@ $ ls build/libs/
 ### jetty runner
 http://search.maven.org : search jetty-runner
 
-http://search.maven.org/remotecontent?filepath=org/eclipse/jetty/jetty-runner/9.1.1.v20140108/jetty-runner-9.1.1.v20140108.jar
+```
+$ wget http://search.maven.org/remotecontent?filepath=org/eclipse/jetty/jetty-runner/9.1.1.v20140108/jetty-runner-9.1.1.v20140108.jar
+```
 
 ### run on localhost:8080
 ```
 $ java -jar jetty-runner-9.1.1.v20140108.jar build/libs/*.war
 ```
 
-http://localhost:8080/api-docs
+* http://localhost:8080/api-docs
+* http://localhost:8080/api-docs/store
+* http://localhost:8080/api-docs/user
 
-http://localhost:8080/api-docs/store
+#### edit web.xml
 
-http://localhost:8080/api-docs/user
+**web.xml**: "basePath”: "http://localhost:8002/api” -> http://localhost:8080
 
-web.xml: "basePath”: "http://localhost:8002/api” -> http://localhost:8080
+#### exmaple of users
+**UserData.java**: user1, user2, ..
 
-UserData: user1, user2, ..
+in browser:
 
-browser: GET http://localhost:8080/user/user1 (xml output)
-
-browser: http://swagger.wordnik.com
+* http://localhost:8080/user/user1 (xml output)
+* http://swagger.wordnik.com
+* http://swagger.wordnik.com -> http://localhost:8080/api-docs
 
 ```
 curl http://localhost:8080/user/user1 -i (json output)
@@ -85,15 +105,15 @@ bin
 .idea/
 build
 out
-.gradle/1.10
+.gradle
 ```
 
 Update repo:
 
 ```
 $ git add .gitignore
-$ git add —all
-$ git commit -am „initial"
+$ git add --all
+$ git commit -am "initial"
 ```
 
 # Official Swagger Sample App
