@@ -52,12 +52,12 @@ $ ls build/libs/
 http://search.maven.org : search jetty-runner
 
 ```
-$ wget http://search.maven.org/remotecontent?filepath=org/eclipse/jetty/jetty-runner/9.1.3.v20140225/jetty-runner-9.1.3.v20140225.jar
+$ wget http://search.maven.org/remotecontent?filepath=org/eclipse/jetty/jetty-runner/9.1.2.v20140210/jetty-runner-9.1.2.v20140210.jar
 ```
 
 ### run on localhost:8080
 ```
-$ java -jar jetty-runner-9.1.3.v20140225.jar build/libs/*.war
+$ java -jar jetty-runner-9.1.2.v20140210.jar build/libs/*.war
 ```
 
 * http://localhost:8080/api-docs
