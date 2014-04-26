@@ -1,5 +1,16 @@
+buildscript {
+    repositories {
+        maven { url "http://repo.spring.io/libs-snapshot" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.0.2.RELEASE")
+    }
+}
+
 apply plugin: 'war'
 apply plugin: 'maven'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
 
 group = rootProject.projectGroup
 version = rootProject.projectVersion
@@ -17,7 +28,7 @@ configurations.all {
 }
 
 repositories {
-
+    maven { url "http://repo.spring.io/libs-snapshot" }
     maven { url "https://oss.sonatype.org/content/repositories/snapshots" }
     maven { url "http://repo.maven.apache.org/maven2" }
 }
@@ -30,6 +41,13 @@ dependencies {
     compile group: 'ch.qos.logback', name: 'logback-core', version: logbackVersion
     compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet-core', version: jerseyVersion
     compile group: 'org.glassfish.jersey.media', name: 'jersey-media-multipart', version: jerseyVersion
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter', version: sprintBootVersion
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-jetty', version: sprintBootVersion
+    compile group: 'org.springframework', name: 'spring-web', version: springVersion
+    compile group: 'com.fasterxml.jackson.jaxrs', name: 'jackson-jaxrs-json-provider', version: jacksonJaxrsVersion
+    compile("org.springframework.boot:spring-boot-starter-actuator")
+    compile group: 'org.hibernate', name: 'hibernate-validator', version: hibernateValidatorVersion
+
     testCompile group: 'org.scalatest', name: 'scalatest_2.10', version: '1.9'
     testCompile group: 'junit', name: 'junit', version: junitVersion
     compile group: 'javax.servlet', name: 'javax.servlet-api', version: javaxServletApiVersion

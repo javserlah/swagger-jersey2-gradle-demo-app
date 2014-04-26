@@ -48,17 +48,51 @@ $ ./gradlew war
 $ ls build/libs/
 ```
 
-### jetty runner
-http://search.maven.org : search jetty-runner
+### Running on localhost:8080
+
+There are many ways to run this project as a service:
+
+#### 1) standalone jetty runner
+http://search.maven.org : search "jetty-runner"
 
 ```
 $ wget http://search.maven.org/remotecontent?filepath=org/eclipse/jetty/jetty-runner/9.1.4.v20140401/jetty-runner-9.1.4.v20140401.jar
 ```
 
-### run on localhost:8080
 ```
 $ java -jar jetty-runner-9.1.4.v20140401.jar build/libs/*.war
 ```
+
+#### 2) using spring-boot (and embedded jetty)
+
+Using ./gradlew run
+
+```
+$ ./gradlew run
+```
+
+Running as a war file from gradle
+
+```
+$ ./gradlew war bootRepackage
+$ java -jar build/libs/swagger-jersey2-gradle-demo-app-1.3.2.war
+```
+
+Running as a jar file from gradle
+
+```
+$ ./gradlew jar bootRepackage
+$ java -jar build/libs/swagger-jersey2-gradle-demo-app-1.3.2.jar
+```
+
+Running as a jar file from java (you must add libs to classpath)
+
+```
+$ ./gradlew jar
+$ java -cp build/libs/swagger-jersey2-gradle-demo-app-1.3.2.jar com.wordnik.swagger.sample.MainApp
+```
+
+#### Checkout localhost:8080
 
 * http://localhost:8080/api-docs
 * http://localhost:8080/api-docs/store
