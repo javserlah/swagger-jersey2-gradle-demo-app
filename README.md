@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/Zenedith/swagger-jersey2-gradle-demo-app.png)](https://travis-ci.org/Zenedith/swagger-jersey2-gradle-demo-app)
-[![Dependency Status](https://mohi.io/github/Zenedith/swagger-jersey2-gradle-demo-app.svg)](https://mohi.io/github/Zenedith/swagger-jersey2-gradle-demo-app)
+[![Dependency Status](http://mohi.io/github/Zenedith/swagger-jersey2-gradle-demo-app.svg)](http://mohi.io/github/Zenedith/swagger-jersey2-gradle-demo-app)
 # swagger-jersey2-gradle-demo-app
 ## Created swagger jersey2 gradle demo app
 
