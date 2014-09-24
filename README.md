@@ -26,9 +26,20 @@ git clone https://github.com/Zenedith/gradlew
 $ ./gradlew init
 ```
 #### edit dependencies
-**dependencies**: update dependencies versions
+**dependencies**: update dependencies versions (versions.gradle file)
 
-**dependencies**: compile group: 'javax.servlet', name: 'javax.servlet-api', version: javaxServletApiVersion
+```
+//spring boot
+  compile group: 'org.springframework.boot', name: 'spring-boot-starter', version: sprintBootVersion
+  compile group: 'org.springframework.boot', name: 'spring-boot-starter-jetty', version: sprintBootVersion
+  compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: sprintBootVersion
+
+  //needed for MainApplicationInitializer class init
+  compile group: 'org.springframework', name: 'spring-web', version: springVersion
+
+  compile group: 'org.hibernate', name: 'hibernate-validator', version: hibernateValidatorVersion
+  compile group: 'javax.servlet', name: 'javax.servlet-api', version: javaxServletApiVersion
+```
 
 **settings.gradle**:  rootProject.name = 'swagger-jersey2-gradle-demo-app'
 
@@ -77,7 +88,7 @@ Running as a jar file from gradle
 
 ```
 $ ./gradlew jar bootRepackage
-$ java -jar build/libs/swagger-jersey2-gradle-demo-app-1.3.2.jar
+$ java -jar build/libs/swagger-jersey2-gradle-demo-app-*.jar
 ```
 
 #### Checkout localhost:8080
@@ -86,9 +97,68 @@ $ java -jar build/libs/swagger-jersey2-gradle-demo-app-1.3.2.jar
 * http://localhost:8080/api-docs/store
 * http://localhost:8080/api-docs/user
 
-#### edit web.xml
+#### web.xml
 
-**web.xml**: "basePath”: "http://localhost:8002/api” -> http://localhost:8080
+* not needed for spring boot
+* needed for jetty-runner
+
+```
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<web-app version="3.0" xmlns="http://java.sun.com/xml/ns/javaee"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd">
+
+  <servlet>
+    <servlet-name>jersey</servlet-name>
+    <servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
+    <init-param>
+      <param-name>javax.ws.rs.Application</param-name>
+      <param-value>com.wordnik.swagger.sample.Application</param-value>
+    </init-param>
+    <init-param>
+      <param-name>jersey.config.server.wadl.disableWadl</param-name>
+      <param-value>true</param-value>
+    </init-param>
+    <load-on-startup>1</load-on-startup>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>jersey</servlet-name>
+    <url-pattern>/*</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>DefaultJaxrsConfig</servlet-name>
+    <servlet-class>com.wordnik.swagger.jaxrs.config.DefaultJaxrsConfig</servlet-class>
+    <init-param>
+      <param-name>api.version</param-name>
+      <param-value>1.0.0</param-value>
+    </init-param>
+    <init-param>
+      <param-name>swagger.api.basepath</param-name>
+      <param-value>http://localhost:8080</param-value>
+    </init-param>
+    <init-param>
+      <param-name>swagger.filter</param-name>
+      <param-value>com.wordnik.swagger.sample.util.ApiAuthorizationFilterImpl</param-value>
+    </init-param>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+  <filter>
+    <filter-name>ApiOriginFilter</filter-name>
+    <filter-class>com.wordnik.swagger.sample.util.ApiOriginFilter</filter-class>
+  </filter>
+  <servlet>
+    <servlet-name>Bootstrap</servlet-name>
+    <servlet-class>com.wordnik.swagger.sample.Bootstrap</servlet-class>
+    <load-on-startup>2</load-on-startup>
+  </servlet>
+  <filter-mapping>
+    <filter-name>ApiOriginFilter</filter-name>
+    <url-pattern>/*</url-pattern>
+  </filter-mapping>
+</web-app>
+
+```
 
 #### exmaple of users
 **UserData.java**: user1, user2, ..

@@ -56,12 +56,10 @@ dependencies {
   //spring boot
   compile group: 'org.springframework.boot', name: 'spring-boot-starter', version: sprintBootVersion
   compile group: 'org.springframework.boot', name: 'spring-boot-starter-jetty', version: sprintBootVersion
-//  compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: sprintBootVersion
   compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: sprintBootVersion
 
   //needed for MainApplicationInitializer class init
   compile group: 'org.springframework', name: 'spring-web', version: springVersion
-//  compile group: 'org.springframework', name: 'spring-webmvc', version: springVersion
 
   compile group: 'org.hibernate', name: 'hibernate-validator', version: hibernateValidatorVersion
   compile group: 'javax.servlet', name: 'javax.servlet-api', version: javaxServletApiVersion
