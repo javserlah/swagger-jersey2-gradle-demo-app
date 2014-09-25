@@ -1,19 +1,23 @@
 buildscript {
   repositories {
-    maven { url "http://repo.spring.io/libs-snapshot" }
-    maven { url "https://github.com/Zenedith/gradle-versions-plugin/raw/mvnrepo" }
-    mavenLocal()
+    maven { url "http://repo.spring.io/libs-release" }
+    mavenCentral()
+    jcenter()
+  }
 
-  }
   dependencies {
-    classpath("org.springframework.boot:spring-boot-gradle-plugin:1.0.2.RELEASE")
-    classpath 'com.github.zenedith:gradle-versions-plugin:0.5-beta-2'
+    classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.6.RELEASE")
   }
+}
+
+plugins {
+  id "com.github.ben-manes.versions" version "0.5"
+
 }
 
 apply from: 'versions.gradle'
 
-apply plugin: 'versions'
+apply plugin: 'com.github.ben-manes.versions'
 apply plugin: 'war'
 apply plugin: 'maven'
 apply plugin: 'idea'
@@ -28,7 +32,7 @@ sourceCompatibility = javaVersion
 targetCompatibility = javaVersion
 
 task wrapper(type: Wrapper) {
-  gradleVersion = '1.12'
+  gradleVersion = '2.1'
 }
 
 configurations.all {
@@ -47,14 +51,19 @@ dependencies {
   compile group: 'ch.qos.logback', name: 'logback-core', version: logbackVersion
   compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet-core', version: jerseyVersion
   compile group: 'org.glassfish.jersey.media', name: 'jersey-media-multipart', version: jerseyVersion
+  compile group: 'com.fasterxml.jackson.jaxrs', name: 'jackson-jaxrs-json-provider', version: jacksonJaxrsVersion
+
+  //spring boot
   compile group: 'org.springframework.boot', name: 'spring-boot-starter', version: sprintBootVersion
   compile group: 'org.springframework.boot', name: 'spring-boot-starter-jetty', version: sprintBootVersion
-  compile group: 'org.springframework', name: 'spring-web', version: springVersion
-  compile group: 'com.fasterxml.jackson.jaxrs', name: 'jackson-jaxrs-json-provider', version: jacksonJaxrsVersion
   compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: sprintBootVersion
-  compile group: 'org.hibernate', name: 'hibernate-validator', version: hibernateValidatorVersion
 
-  testCompile group: 'org.scalatest', name: 'scalatest_2.10', version: '2.2.0'
-  testCompile group: 'junit', name: 'junit', version: junitVersion
+  //needed for MainApplicationInitializer class init
+  compile group: 'org.springframework', name: 'spring-web', version: springVersion
+
+  compile group: 'org.hibernate', name: 'hibernate-validator', version: hibernateValidatorVersion
   compile group: 'javax.servlet', name: 'javax.servlet-api', version: javaxServletApiVersion
+
+  testCompile group: 'org.scalatest', name: 'scalatest_2.10', version: '2.2.2'
+  testCompile group: 'junit', name: 'junit', version: junitVersion
 }

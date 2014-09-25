@@ -1,11 +1,12 @@
 package com.wordnik.swagger.sample;
 
 import org.springframework.boot.SpringApplication;
+import org.springframework.boot.actuate.autoconfigure.MetricFilterAutoConfiguration;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
-@EnableAutoConfiguration
+@EnableAutoConfiguration(exclude = {MetricFilterAutoConfiguration.class})
 @Configuration
 @ComponentScan
 public class MainApp {
